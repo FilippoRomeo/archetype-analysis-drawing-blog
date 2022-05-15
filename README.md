@@ -23,7 +23,7 @@ to the brutality suffered.
 * Pyfirmata, standard-firmatata 
 * Opencv aruco
  
-## Posenet with Jetson 
+### Posenet with Jetson 
 To extrapolate the pose estimation, I used the jetson nano, excellent hardware that contains 128 Cuda cores, allowing a DNN to run on real-time and images
 and produce immediate results. 
 Posenet returns two essential data a 2D array called *Links* and an object called *keypoints*. The 2D array stores information about the joins between body
@@ -105,4 +105,11 @@ identify the body parts.
    -- y:   250.148
 ]
 ```
+Which if we submit the following image 
+- ![people](https://user-images.githubusercontent.com/43594252/168493114-bbfa7405-9f10-434f-aa00-e962a87824cc.jpg)
+Will return
+- ![peoplesk](https://user-images.githubusercontent.com/43594252/168493115-332d49c4-37aa-4825-a100-0e3c8bb1d9ad.jpg)
+
+
+
 
