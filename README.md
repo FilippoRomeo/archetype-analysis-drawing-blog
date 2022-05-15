@@ -29,11 +29,11 @@ and produce immediate results.
 Posenet returns two essential data a 2D array called *Links* and an object called *keypoints*. The 2D array stores information about the joins between body
 parts ("links") needed to produce the skeletal topology. The keypoints object returns a list of items containing id and coordinates x and y required to
 identify the body parts.
--Links
+- Links
 ```
  [(12, 14), (10, 12), (13, 15), (11, 13), (10, 11), (5, 7), (6, 8), (7, 9), (1, 2), (0, 1), (0, 2), (1, 3), (2, 4), (3, 5), (4, 6), (0, 16), (5, 16), (6, 16), (10, 16), (11, 16)]
 ```
--Keypoints
+- Keypoints
 ```
 [<poseNet.ObjectPose.Keypoint object>
    -- ID:  0 (nose)
