@@ -16,6 +16,7 @@ to the brutality suffered.
 * 2x servos 
 * 2x solenoid
 * laser module
+
 **libraries:**
 * Jetson inference with python binding  
 * Pyfirmata, standard-firmatata 
