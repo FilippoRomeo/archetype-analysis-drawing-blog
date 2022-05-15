@@ -127,7 +127,23 @@ Returning all the normalized points.
 ### Visualizing the results
 At this point I did not automated and improved the *bodysk.py* file just to develop quicker the outcome and then come back to fix small bugs and especially optimize the overall code. 
 So printing the values I copied and paste into a brand new file called *drawing.py* where ideally was designed to identify the canvas and calculate the robot movements. This was the first program that I wrote in order to map the normalized points to the selected area and extract the values for the pan and tilt (the two servos). These are the results:
+
 ![1](https://user-images.githubusercontent.com/43594252/168495220-4bdc8d39-4aae-4753-b47b-2a5d2b3d326b.png)
+
 ![2](https://user-images.githubusercontent.com/43594252/168495223-c5d4e3ae-a207-4cc2-89d1-0f86569a9ee7.png)
+
 In these two example I am pointing to the wall the camera and testing the normalized points are mapped inside the drawed square. 
-The code runs well, in terms of mapping the x ys but if i try to calculate the angle for each servos the returned values are wrong. My approach is to identify the centre of the drawed square, add a distance z, and imagine a traingle rectangle, with the square angle in the center, one angle towards the pan/tilt and another angle to the (x,0) then to and (0,y) so to find the angle for the pan and tilt. 
+
+The code runs well, in terms of mapping the x ys. But if i try to calculate the angle for each servos the returned values are wrong. My intent to use trigonometry for each angle failed. First i find the centre by divide by 2 the width and the height of the the drawed square, add a distance z, and imagine a traingle rectangle, with the square angle laying on the center, one angle towards the pan (x,0) and another angle to the tilt (0,y) so to find the corrispective angle. 
+
+* pan:
+```
+[-7.550697342214455, -8.84811785372994, -8.493479476310146, -15.02354382253232, -15.14680012479041, -21.422908506363378, -20.471515208489368, -3.0832843555430696, 0.8491388992650896, 3.1413629053369863, 4.25873187173949, 4.408849345381613, 4.354298014093828, 1.79654673514508, -0.24252782534067613, -6.3266009356257795, -9.188741209956259, -15.679940427696112, -17.763638599037446, -22.47862856842786, -22.921734115807087, -11.090927883941962, -6.150513460631685, -2.5859551029299936, -0.1465864637679279, 1.174180008465187, 2.102254799749693, 0.34057563061352136, -0.9640689063008367, -4.552895226864808, -7.067788646968692, -10.864542381851585, -13.50913411206204, -14.848915651267513, -19.644327333786634, -21.918066822159002, -26.289601707151743, -27.851427160837467, -18.26329923323473, 0.715002120081876, 6.131642876815707, 7.410065076677268, 7.461327416026886, 7.023463505140629, 4.307683215932534, 2.776881220020983, -1.9200607216999046]
+```
+* tilt:
+```
+[82.12935920248833, 154.48529243115772, -125.9121980982381, -51.668860098809866, 31.30150561329588, 108.94322914871839, -163.85981305355207, -88.18863024060516, -27.38655794013396, 32.78989671359718, 94.60808759435002, 154.11340123465118, -142.60845733846688, -84.37262769023847, -18.483310322182067, 40.69239014134444, 105.41088837576473, 166.18691338599245, -125.51233845747394, -59.66764676092049, 12.542147860561524, 76.3493381469124, 125.3121009019235, 173.39652990478615, -137.37329118416446, -90.11541368629409, -39.87577834755655, 6.2275928955021, 58.20963762369964, 103.41059110323197, 157.6295285488888, -156.92883834961881, -108.29502508206761, -55.33608384369175, -4.884367818272769, 50.338653918224075, 104.89386454147606, 164.24857813665307, -142.92136782118382, -68.66826232106642, 5.6695651053340415, 82.73240550659735, 156.64433555913627, -124.45094691656672, -53.711736278845656, 27.23885574487593, 110.09525615495387]
+```
+Despite the negative value they seem to be inaccurate or entirely wrong. 
+So what i decided to do is to use a depth camera to actually convert the normalizex coordinates to 3d points but it is over complicated and it was suggested to implement a solution with ROS, robotic operating system. which i tried but soon later I stopped. 
+Ultimatelly I decided to use Aruco marker to create a more preciced envirorment placing them around the canvas so to generate a 2D  plane.
