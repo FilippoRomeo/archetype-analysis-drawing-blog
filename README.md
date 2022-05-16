@@ -164,7 +164,11 @@ The results are:
 ```
 [113.52228117304068, 63.71712573832663, 114.07259024668323, 94.46896262323037, 114.4084557358923, 56.18746074405451, 43.60979806126594, 140.85602342729473, 23.342649643000676, 59.779583389830606, 62.991221556698534, 39.02783220920663, 30.52011871971751, 101.33867937990672, 115.89795703592421, 111.13294486491232, 103.38607825766975, 124.15019306731463, 126.48540387723476, 38.27182745169824, 63.878257424528755, 51.82196939286727, 78.13195692344499, 158.76445361214437, 162.63177543385495, 128.70451591907369, 134.75530942844654, 2.499186049313427, 34.00640363430746, 131.26241016142717, 141.1521833859722, 135.2315466578959, 111.43987722332025, 111.91073845212152, 10.430046617782088, 5.663894574250857, 54.75582798154661, 52.73500971973644, 23.92008913371305, 64.52036411041536, 111.6198396829604, 113.47186656969266, 52.955384140266574, 57.64943215683514, 147.26390841981706, 143.1294897103298, 65.55353800137468]
 ```
-Again despite the negative value seems to be more accurate, but not enught to draw with the robot.
-
-
-
+Again despite the negative value seems to be more accurate, but not enught to draw with the robot. My guess is that I need to do a conversion from pixel to real life points and get a more accurate calibration. In computer vision there are many way how to achieve this one is to apply solvePnP that requires the pixel coordinates (x,y), and also a depth (z) corresponding world coordinates (x,y,z) a so called matrix K to calibrate the the camera, usually is required a checkerbox or an [aruco checkerbox](https://github.com/riccardogiorato/aruco_checkerboard). If camera is not calibrated can have a margin error of 5 to 30 cm. An extrinsic matrix used to transform matrix from the world coordinate system 3D to the camera/pixel coordinate system 2D. My problem is the conversion from pixel coordinate points p (2D) + depth d to world coordinate points X (3D). I could not work out a solution. there are many example using this formula 
+```
+ret, rvec, tvec = cv.solvePnP(world_points, img_points, K, np.float32([]), cv.SOLVEPNP_IPPE)
+```
+or for aruco marker
+```
+rvec , tvec , _ = aruco . EstimatePoseSingleMarkers ( Corners ,  distance , camera_matrix , dist_matrix ) 
+```
